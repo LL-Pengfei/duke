@@ -26,7 +26,13 @@ public class Duke {
             //System.out.println("debug: " + cmd_1 + " " + cmd_2);
             //if (cmd == null) break;
 
-            if (cmd.equals("bye")) {
+            if (cmd.equals("todo") || cmd.equals("event") || cmd.equals("deadline")) {
+                System.out.println(":( OOPS!!! The description of a " + cmd + "cannot be empty.");
+                continue;
+            } else if (cmd.equals("blah")) {
+                System.out.println(":( OOPS!!! I'm sorry, but I don't know what that means :-(");
+                continue;
+            } else if (cmd.equals("bye")) {
                 System.out.println("Bye. Hope to see you again soon!");
                 break;
             } else if (cmd.equals("list")) {
