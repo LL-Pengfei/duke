@@ -37,6 +37,34 @@ public class Duke {
                 //done noted as 1
                 String[] token = cmd.split(" ", 2);
                 String cmd_1 = token[0];
+
+                //handling errors here
+                //the variables errorMessage here better be put in the dukeException class,
+                //but time limited today, refactorise later
+                //also refer to the webpage just found out when refactorising
+                //should prob catch the case when rubbish input got space in b/w
+                if (token.length < 2) {
+                    if (cmd_1.equals("done") || cmd_1.equals("todo") || cmd_1.equals("event") || cmd_1.equals("deadline")) {
+                        //incomplete input
+                        try {
+                            String errorMessage = ":( OOPS!!! The description of a " + cmd_1 + " cannot be empty.";
+                            throw new DukeException(errorMessage);
+                        } catch (DukeException e) {
+                            System.out.println(e.getMessage());
+                            continue;
+                        }
+                    } else {
+                        //non-sensical inputs, e.g. blah
+                        try {
+                            String errorMessage = ":( OOPS!!! I'm sorry, but I don't know what that means :-(";
+                            throw new DukeException(errorMessage);
+                        } catch (DukeException e) {
+                            System.out.println(e.getMessage());
+                            continue;
+                        }
+                    }
+                }
+
                 String cmd_2 = token[1];
                 if (cmd_1.equals("done")) {
                     //done things
