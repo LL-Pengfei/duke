@@ -8,6 +8,11 @@ public class Task {
         this.isDone = false;
         size++;
     }
+
+    public String toString() {
+        return "[" + this.getStatusIcon() + "] " + this.description;
+    }
+
     public void markAsDone() {
         this.isDone = true;
     }
