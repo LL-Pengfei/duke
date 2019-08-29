@@ -8,9 +8,6 @@
  */
 
 public class Todo extends Task {
-
-    public String status = "[T]";
-
     public Todo(String description) {
         super(description);
     }

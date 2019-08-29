@@ -10,8 +10,8 @@
 import java.io.Serializable;
 
 public class Task implements Serializable {
-    public String description;
-    public boolean isDone;
+    protected String description;
+    protected boolean isDone;
     public static int size = 0;
 
     public Task(String description) {

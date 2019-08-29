@@ -8,9 +8,7 @@
  */
 
 public class Event extends Task {
-
-    public String status = "[E]";
-    public String at;
+    protected String at;
 
     public Event(String description, String at) {
         super(description);
