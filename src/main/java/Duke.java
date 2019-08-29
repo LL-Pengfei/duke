@@ -1,3 +1,4 @@
+//@@author LL-Pengfei
 /* Author: Zhao Pengfei (Email: zhao.pengfei@comp.nus.edu.sg)
  * Copyright © Zhao Pengfei (Email: zhao.pengfei@comp.nus.edu.sg)
  * AY19/20 CS2113T Module Project, Individual Component
@@ -47,7 +48,6 @@ public class Duke {
         month_name[11] = "December";
 
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-
         //file io
         try {
             FileInputStream file = new FileInputStream("C:\\Users\\LL\\2113t\\duke\\src\\main\\java\\duke.txt");
@@ -64,7 +64,6 @@ public class Duke {
             System.out.println("OOPS... ClassNotFoundException is caught.");
         }
 
-
         while(true) {
             String cmd = br.readLine();
             if (cmd.equals("bye")) {
@@ -74,14 +73,13 @@ public class Duke {
                 list(t);
             } else {
                 //doing things, or done things
-                //done noted as 1
                 String[] token = cmd.split(" ", 2);
                 String cmd_1 = token[0];
 
                 //handling errors here
                 //the variables errorMessage here better be put in the dukeException class,
-                //but time limited today, refactorise later
-                //also refer to the webpage just found out when refactorising
+                //but time limited, refactorise later
+                //also refer to the webpage when refactorising
                 //should prob catch the case when rubbish input got space in b/w
                 if (token.length < 2) {
                     if (cmd_1.equals("done") || cmd_1.equals("todo") || cmd_1.equals("event") || cmd_1.equals("deadline")) {
@@ -121,16 +119,11 @@ public class Duke {
                     } else {
                         //event & deadline
                         //need string parsing again
-                        //System.out.println("debugggg");
                         String[] cmd_2_token = cmd_2.split("/", 2);
                         String cmd_2_1 = cmd_2_token[0];
                         String cmd_2_2 = cmd_2_token[1];
                         String[] cmd_2_2_token = cmd_2_2.split(" ", 2);
                         String cmd_2_2_2 = cmd_2_2_token[1];
-
-                        //cmd_2_2_2.trim();
-                        //System.out.println(cmd_2_2); //supposed: by .... ...
-                        //System.out.println(cmd_2_2_2); //supposed: ... ...
 
                         //cmd_2_2_2 is the dates and times
                         //level 8: have to parse it further
@@ -180,7 +173,6 @@ public class Duke {
                             t[Task.size] = new Deadline(cmd_2_1, task_day_str, task_month_str, task_year_str, task_time_str);
                         }
                     }
-                    // System.out.println(Task.size);
                     System.out.println(t[Task.size-1].toString());
                     System.out.println("Now you have " + Task.size + " tasks in the list.");
                 }
@@ -201,5 +193,3 @@ public class Duke {
         }
     }
 }
-//Task[] tasks = new Task[100];
-//task[0] = new Deadline("return book", "Monday");
