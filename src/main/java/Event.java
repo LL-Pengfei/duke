@@ -8,15 +8,21 @@
  */
 
 public class Event extends Task {
-    protected String at;
+    protected String at_day;
+    protected String at_month;
+    protected String at_year;
+    protected String at_time;
 
-    public Event(String description, String at) {
+    public Event(String description, String at_day, String at_month, String at_year, String at_time) {
         super(description);
-        this.at = at;
+        this.at_day = at_day;
+        this.at_month = at_month;
+        this.at_year = at_year;
+        this.at_time = at_time;
     }
 
     @Override
     public String toString() {
-        return "[E]" + super.toString() + "(at: " + at + ")";
+        return "[E]" + super.toString() + "(at: " + at_day + " of " + at_month + " " + at_year + ", " +  at_time + ")";
     }
 }

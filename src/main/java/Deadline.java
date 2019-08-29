@@ -8,15 +8,21 @@
  */
 
 public class Deadline extends Task {
-    protected String by;
+    protected String by_day;
+    protected String by_month;
+    protected String by_year;
+    protected String by_time;
 
-    public Deadline(String description, String by) {
+    public Deadline(String description, String by_day, String by_month, String by_year, String by_time) {
         super(description);
-        this.by = by;
+        this.by_day = by_day;
+        this.by_month = by_month;
+        this.by_year = by_year;
+        this.by_time = by_time;
     }
 
     @Override
     public String toString() {
-        return "[D]" + super.toString() + "(by: " + by + ")";
+        return "[D]" + super.toString() + "(by: " + by_day + " of " + by_month + " " + by_year + ", " +  by_time + ")";
     }
 }
