@@ -1,3 +1,12 @@
+/* Author: Zhao Pengfei (Email: zhao.pengfei@comp.nus.edu.sg)
+ * Copyright © Zhao Pengfei (Email: zhao.pengfei@comp.nus.edu.sg)
+ * AY19/20 CS2113T Module Project, Individual Component
+ * School of Computing (SoC), National University of Singapore (NUS)
+ *
+ * please do not copy the codes/any of the code segments for any purposes.
+ * Plagiarism is strictly prohibited under NUS rules and regulations.
+ */
+
 import java.util.*;
 import java.io.*;
 
@@ -24,6 +33,24 @@ public class Duke {
         initialize();
         Task[] t = new Task[105]; //redundancy
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        //file io
+        try {
+            FileInputStream file = new FileInputStream("C:\\Users\\LL\\2113t\\duke\\src\\main\\java\\duke.txt");
+            ObjectInputStream in = new ObjectInputStream(file);
+            Task.size = 0;
+            while(file.available() > 0) {
+                t[Task.size++] = (Task)in.readObject();
+            }
+            in.close();
+            file.close();
+        } catch (IOException e) {
+            System.out.println("OOPS... IOException is caught.");
+        } catch (ClassNotFoundException e) {
+            System.out.println("OOPS... ClassNotFoundException is caught.");
+        }
+
+
         while(true) {
             String cmd = br.readLine();
             if (cmd.equals("bye")) {
@@ -32,7 +59,6 @@ public class Duke {
             } else if (cmd.equals("list")) {
                 list(t);
             } else {
-
                 //doing things, or done things
                 //done noted as 1
                 String[] token = cmd.split(" ", 2);
@@ -97,6 +123,19 @@ public class Duke {
                     System.out.println(t[Task.size-1].toString());
                     System.out.println("Now you have " + Task.size + " tasks in the list.");
                 }
+            }
+
+            //file io
+            try {
+                FileOutputStream new_file = new FileOutputStream("C:\\Users\\LL\\2113t\\duke\\src\\main\\java\\duke.txt");
+                ObjectOutputStream out = new ObjectOutputStream(new_file);
+                for (int i = 0; i < Task.size; i++) {
+                    out.writeObject(t[i]);
+                }
+                out.close();
+                new_file.close();
+            } catch (IOException e) {
+                System.out.println("OOPS... IOException is caught.");
             }
         }
     }
