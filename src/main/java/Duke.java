@@ -84,7 +84,8 @@ public class Duke {
                 //also refer to the webpage when refactorising
                 //should prob catch the case when rubbish input got space in b/w
                 if (token.length < 2) {
-                    if (cmd_1.equals("done") || cmd_1.equals("delete") || cmd_1.equals("todo") || cmd_1.equals("event") || cmd_1.equals("deadline")) {
+                    if (cmd_1.equals("done") || cmd_1.equals("delete") || cmd_1.equals("find") || cmd_1.equals("todo")
+                                                                || cmd_1.equals("event") || cmd_1.equals("deadline")) {
                         //incomplete input
                         try {
                             String errorMessage = ":( OOPS!!! The description of a " + cmd_1 + " cannot be empty.";
@@ -122,6 +123,18 @@ public class Duke {
                     t.remove(num-1);
                     Task.size--;
                     System.out.println("Now you have " + Task.size + " tasks in the list.");
+                } else if (cmd_1.equals("find")){
+                    //add functionality to allow users to find task by
+                    //searching for a keyword
+                    System.out.println("Here are the matching tasks in your list:");
+                    int temp_counter = 0;
+                    for (int i = 0; i < Task.size; i++) {
+                        String temp_str = t.get(i).toString();
+                        if ((temp_str.indexOf(cmd_2)) != -1) { //replace-able by temp_str.contains(cmd_2)
+                                                               // , refactorise later
+                            System.out.println(++temp_counter + "." + temp_str);
+                        }
+                    }
                 } else {
                     //doing things
                     System.out.println("Got it. I've added this task:");
