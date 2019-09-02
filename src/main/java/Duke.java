@@ -84,7 +84,7 @@ public class Duke {
                 //also refer to the webpage when refactorising
                 //should prob catch the case when rubbish input got space in b/w
                 if (token.length < 2) {
-                    if (cmd_1.equals("done") || cmd_1.equals("todo") || cmd_1.equals("event") || cmd_1.equals("deadline")) {
+                    if (cmd_1.equals("done") || cmd_1.equals("delete") || cmd_1.equals("todo") || cmd_1.equals("event") || cmd_1.equals("deadline")) {
                         //incomplete input
                         try {
                             String errorMessage = ":( OOPS!!! The description of a " + cmd_1 + " cannot be empty.";
@@ -109,9 +109,19 @@ public class Duke {
                 if (cmd_1.equals("done")) {
                     //done things
                     System.out.println("Nice! I've marked this task as done:");
+                    System.out.print("  ");
                     int num = Integer.parseInt(cmd_2); // the second token is num
                     t.get(num-1).markAsDone();
                     System.out.println(t.get(num-1).toString());
+                } else if (cmd_1.equals("delete")) {
+                    //delete things
+                    System.out.println("Noted. I've removed this task:");
+                    System.out.print("  ");
+                    int num = Integer.parseInt(cmd_2);
+                    System.out.println(t.get(num-1).toString());
+                    t.remove(num-1);
+                    Task.size--;
+                    System.out.println("Now you have " + Task.size + " tasks in the list.");
                 } else {
                     //doing things
                     System.out.println("Got it. I've added this task:");
