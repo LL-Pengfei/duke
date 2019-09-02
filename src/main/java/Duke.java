@@ -12,10 +12,12 @@ import java.util.*;
 import java.io.*;
 
 public class Duke {
-    public static void list(Task[] t) {
+    public static ArrayList<Task> t = new ArrayList<>(); //make it global
+
+    public static void list() {
         System.out.println("Here are the tasks in your list:");
         for (int i = 0; i < Task.size; i++) {
-            System.out.println(i+1 + "." + t[i].toString());
+            System.out.println(i+1 + "." + t.get(i).toString());
         }
     }
 
@@ -32,7 +34,7 @@ public class Duke {
 
     public static void main(String[] args) throws Exception {
         initialize();
-        Task[] t = new Task[105]; //redundancy
+        //Task[] t = new Task[105]; //redundancy
         String[] month_name = new String[15]; //redundancy
         month_name[0] = "January";
         month_name[1] = "February";
@@ -54,7 +56,7 @@ public class Duke {
             ObjectInputStream in = new ObjectInputStream(file);
             Task.size = 0;
             while(file.available() > 0) {
-                t[Task.size++] = (Task)in.readObject();
+                t.add(Task.size++, (Task)in.readObject());
             }
             in.close();
             file.close();
@@ -70,7 +72,7 @@ public class Duke {
                 System.out.println("Bye. Hope to see you again soon!");
                 break;
             } else if (cmd.equals("list")) {
-                list(t);
+                list();
             } else {
                 //doing things, or done things
                 String[] token = cmd.split(" ", 2);
@@ -82,7 +84,7 @@ public class Duke {
                 //also refer to the webpage when refactorising
                 //should prob catch the case when rubbish input got space in b/w
                 if (token.length < 2) {
-                    if (cmd_1.equals("done") || cmd_1.equals("todo") || cmd_1.equals("event") || cmd_1.equals("deadline")) {
+                    if (cmd_1.equals("done") || cmd_1.equals("delete") || cmd_1.equals("todo") || cmd_1.equals("event") || cmd_1.equals("deadline")) {
                         //incomplete input
                         try {
                             String errorMessage = ":( OOPS!!! The description of a " + cmd_1 + " cannot be empty.";
@@ -107,15 +109,25 @@ public class Duke {
                 if (cmd_1.equals("done")) {
                     //done things
                     System.out.println("Nice! I've marked this task as done:");
+                    System.out.print("  ");
                     int num = Integer.parseInt(cmd_2); // the second token is num
-                    t[num-1].markAsDone();
-                    System.out.println(t[num-1].toString());
+                    t.get(num-1).markAsDone();
+                    System.out.println(t.get(num-1).toString());
+                } else if (cmd_1.equals("delete")) {
+                    //delete things
+                    System.out.println("Noted. I've removed this task:");
+                    System.out.print("  ");
+                    int num = Integer.parseInt(cmd_2);
+                    System.out.println(t.get(num-1).toString());
+                    t.remove(num-1);
+                    Task.size--;
+                    System.out.println("Now you have " + Task.size + " tasks in the list.");
                 } else {
                     //doing things
                     System.out.println("Got it. I've added this task:");
                     System.out.print("  ");
                     if (cmd_1.equals("todo")) {
-                        t[Task.size] = new Todo(cmd_2);
+                        t.add(Task.size, new Todo(cmd_2));
                     } else {
                         //event & deadline
                         //need string parsing again
@@ -168,12 +180,12 @@ public class Duke {
                         //parsing done
 
                         if (cmd_1.equals("event")) {
-                            t[Task.size] = new Event(cmd_2_1, task_day_str, task_month_str, task_year_str, task_time_str);
+                            t.add(Task.size, new Event(cmd_2_1, task_day_str, task_month_str, task_year_str, task_time_str));
                         } else { //deadline
-                            t[Task.size] = new Deadline(cmd_2_1, task_day_str, task_month_str, task_year_str, task_time_str);
+                            t.add(Task.size, new Deadline(cmd_2_1, task_day_str, task_month_str, task_year_str, task_time_str));
                         }
                     }
-                    System.out.println(t[Task.size-1].toString());
+                    System.out.println(t.get(Task.size-1).toString());
                     System.out.println("Now you have " + Task.size + " tasks in the list.");
                 }
             }
@@ -183,7 +195,7 @@ public class Duke {
                 FileOutputStream new_file = new FileOutputStream("C:\\Users\\LL\\2113t\\duke\\src\\main\\java\\duke.txt");
                 ObjectOutputStream out = new ObjectOutputStream(new_file);
                 for (int i = 0; i < Task.size; i++) {
-                    out.writeObject(t[i]);
+                    out.writeObject(t.get(i));
                 }
                 out.close();
                 new_file.close();

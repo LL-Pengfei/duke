@@ -13,7 +13,10 @@ import java.io.Serializable;
 public class Task implements Serializable {
     protected String description;
     protected boolean isDone;
-    public static int size = 0;
+    public static int size = 0; // actually no need to specially
+                                // keep a static variable to trace size...
+                                // since arraylist has been implemented and can
+                                // access the size using size() method...
 
     public Task(String description) {
         this.description = description;
