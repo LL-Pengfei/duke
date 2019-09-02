@@ -8,6 +8,9 @@
  * Plagiarism is strictly prohibited under NUS rules and regulations.
  */
 
+//Todo.java
+//support Todo of Task, subclass of Task
+
 public class Todo extends Task {
     public Todo(String description) {
         super(description);

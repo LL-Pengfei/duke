@@ -7,6 +7,8 @@
  * please do not copy the codes/any of the code segments for any purposes.
  * Plagiarism is strictly prohibited under NUS rules and regulations.
  */
+//DukeException.java
+//support & enable error handling for Duke
 
 public class DukeException extends Exception {
     public DukeException(String s) {

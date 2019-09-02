@@ -7,8 +7,13 @@
  * please do not copy the codes/any of the code segments for any purposes.
  * Plagiarism is strictly prohibited under NUS rules and regulations.
  */
+
+//Event.java
+//support Event of Task, subclass of Task
+
 //tutorial01 note: better to use getters and setters to allow modification of at_day month year time inside class event
 //a good practice to do that for oop & se
+
 public class Event extends Task {
     protected String at_day;
     protected String at_month;

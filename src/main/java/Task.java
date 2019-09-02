@@ -8,6 +8,11 @@
  * Plagiarism is strictly prohibited under NUS rules and regulations.
  */
 
+//Task.java
+//baseclass of Deadline Event & Todo, branching out to form different subclasses
+//of Task; implemented Serializable to support persistant storage (save tasks in
+// hard disk, load data from hard disk when Duke starts up)
+
 import java.io.Serializable;
 
 public class Task implements Serializable {

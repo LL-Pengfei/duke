@@ -7,6 +7,9 @@
  * please do not copy the codes/any of the code segments for any purposes.
  * Plagiarism is strictly prohibited under NUS rules and regulations.
  */
+//Deadline.java
+//support Deadline of Task, subclass of Task
+
 
 public class Deadline extends Task {
     protected String by_day;
