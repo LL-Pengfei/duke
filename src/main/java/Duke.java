@@ -54,7 +54,7 @@ ALSO, when doing Level-6, used Java Collections classes for storing data
 - Deadline and Event time understood as time, not String
 - support dates and time interpretations (at this moment, time only support round
 - clock time, non-round clock time will round down to the round clock
-- (e.g. 18；50 -> 18：00))
+- (e.g. 18:50 -> 18:00))
 command: deadline(event) sth /by(at) D/M/YR TTTT (format)
 sth /by D ||||| sth /at D -> space must have; must be this exact format
 D/M/YR TTTT TTTT == 24 hour clock, no :
