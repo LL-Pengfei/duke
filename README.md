@@ -2,7 +2,7 @@
 
 This is the Individual Component for the Module Project of the Module CS2113T, Software Engineering & Object-Oriented Programming, in Academic Year AY19/20, Semester 1 (AY19/20S1), conducted in School of Computing (SoC), National University of Singapore (NUS).
 
-The author and the copyright holder of this repository is the AY19/20S1 CS2113T student, **Zhao Pengfei** (Email: zhao.pengfei@comp.nus.edu.sg) (GitHub Username: LL-Pengfei), who built and constantly updated this repository after forking the original repository materials from the NUS SoC CS2113T learning materials ([Duke at NUSCS2113-AY1920S1](https://github.com/nusCS2113-AY1920S1/duke)).
+The author and the copyright holder of this repository is the AY19/20S1 CS2113T student, **Zhao Pengfei** (Email: zhao.pengfei@comp.nus.edu.sg) (GitHub Username: LL-Pengfei). The author has built and constantly updated this repository after forking the original repository materials from the NUS SoC CS2113T learning materials ([Duke at NUSCS2113-AY1920S1](https://github.com/nusCS2113-AY1920S1/duke)).
 
 **Plagiarism is strictly prohibited under NUS rules and regulations. No copying of the codes/any of the code segments for any purposes.** Please kindly refer to [the CS2113T Module Policy on plagiarism](https://nuscs2113-ay1920s1.github.io/website/admin/appendixB-policies.html#policy-on-plagiarism) if you attempt to copy the codes/code segments from this repository.
 
