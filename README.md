@@ -4,7 +4,7 @@ This is the Individual Component for the Module Project of the Module CS2113T, S
 
 The author and the copyright holder of this repository is the AY19/20S1 CS2113T student, **Zhao Pengfei** (Email: zhao.pengfei@comp.nus.edu.sg) (GitHub Username: LL-Pengfei), created based on NUS SoC CS2113T learning materials.
 
-**Plagiarism is strictly prohibited under NUS rules and regulations. No copying of the codes/any of the code segments for any purposes.** Please refer to [CS2113T Policy on plagiarism](https://nuscs2113-ay1920s1.github.io/website/admin/appendixB-policies.html#policy-on-plagiarism) if you attempt to copy the codes/code segments from this repository.
+**Plagiarism is strictly prohibited under NUS rules and regulations. No copying of the codes/any of the code segments for any purposes.** Please kindly refer to [the CS2113T Module Policy on plagiarism](https://nuscs2113-ay1920s1.github.io/website/admin/appendixB-policies.html#policy-on-plagiarism) if you attempt to copy the codes/code segments from this repository.
 
 # Setting up
 
