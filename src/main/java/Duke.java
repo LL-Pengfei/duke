@@ -65,6 +65,10 @@ provide the capability to search for tasks that were recorded. Give users a
 way to find a task by searching for a keyword
 command: find sth (sth = any keyword) - return matching tasks list (number here
 is not the number in the task list, but directly 1 2 3...)
+
+9.5 A-TextUiTesting implemented, using Text UI Testing, test using the IO redirection technique
+it now supports using the IO redirection technique to semi-automate testing of Duke
+[automated testing of the Duke UI]
  */
 
 import java.util.*;
