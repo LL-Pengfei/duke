@@ -75,29 +75,23 @@ import java.util.*;
 import java.io.*;
 
 public class Duke {
-    public static ArrayList<Task> t = new ArrayList<>(); //make it global
+    private Ui ui;
+    private Storage storage;
 
     public static void list() {
         System.out.println("Here are the tasks in your list:");
         for (int i = 0; i < Task.size; i++) {
-            System.out.println(i+1 + "." + t.get(i).toString());
+            System.out.println(i+1 + "." + Storage.t.get(i).toString());
         }
     }
 
-    public static void initialize() {
-        String logo = " ____        _        \n"
-                + "|  _ \\ _   _| | _____ \n"
-                + "| | | | | | | |/ / _ \\\n"
-                + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n";
-        System.out.println("Hello from\n" + logo);
-        System.out.println("Hello! I'm Duke");
-        System.out.println("What can I do for you?");
+    public Duke(String filePath) throws Exception {
+        ui = new Ui();
+        ui.initialize();
+        storage = new Storage(filePath);
     }
 
-    public static void main(String[] args) throws Exception {
-        initialize();
-        //Task[] t = new Task[105]; //redundancy
+    public void run() throws Exception {
         String[] month_name = new String[15]; //redundancy
         month_name[0] = "January";
         month_name[1] = "February";
@@ -112,25 +106,8 @@ public class Duke {
         month_name[10] = "November";
         month_name[11] = "December";
 
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        //file io
-        try {
-            FileInputStream file = new FileInputStream("C:\\Users\\LL\\2113t\\duke\\src\\main\\java\\duke.txt");
-            ObjectInputStream in = new ObjectInputStream(file);
-            Task.size = 0;
-            while(file.available() > 0) {
-                t.add(Task.size++, (Task)in.readObject());
-            }
-            in.close();
-            file.close();
-        } catch (IOException e) {
-            System.out.println("OOPS... IOException is caught.");
-        } catch (ClassNotFoundException e) {
-            System.out.println("OOPS... ClassNotFoundException is caught.");
-        }
-
         while(true) {
-            String cmd = br.readLine();
+            String cmd = Storage.br.readLine();
             if (cmd.equals("bye")) {
                 System.out.println("Bye. Hope to see you again soon!");
                 break;
@@ -148,7 +125,7 @@ public class Duke {
                 //should prob catch the case when rubbish input got space in b/w
                 if (token.length < 2) {
                     if (cmd_1.equals("done") || cmd_1.equals("delete") || cmd_1.equals("find") || cmd_1.equals("todo")
-                                                                || cmd_1.equals("event") || cmd_1.equals("deadline")) {
+                            || cmd_1.equals("event") || cmd_1.equals("deadline")) {
                         //incomplete input
                         try {
                             String errorMessage = ":( OOPS!!! The description of a " + cmd_1 + " cannot be empty.";
@@ -175,15 +152,15 @@ public class Duke {
                     System.out.println("Nice! I've marked this task as done:");
                     System.out.print("  ");
                     int num = Integer.parseInt(cmd_2); // the second token is num
-                    t.get(num-1).markAsDone();
-                    System.out.println(t.get(num-1).toString());
+                    Storage.t.get(num-1).markAsDone();
+                    System.out.println(Storage.t.get(num-1).toString());
                 } else if (cmd_1.equals("delete")) {
                     //delete things
                     System.out.println("Noted. I've removed this task:");
                     System.out.print("  ");
                     int num = Integer.parseInt(cmd_2);
-                    System.out.println(t.get(num-1).toString());
-                    t.remove(num-1);
+                    System.out.println(Storage.t.get(num-1).toString());
+                    Storage.t.remove(num-1);
                     Task.size--;
                     System.out.println("Now you have " + Task.size + " tasks in the list.");
                 } else if (cmd_1.equals("find")){
@@ -192,7 +169,7 @@ public class Duke {
                     System.out.println("Here are the matching tasks in your list:");
                     int temp_counter = 0;
                     for (int i = 0; i < Task.size; i++) {
-                        String temp_str = t.get(i).toString();
+                        String temp_str = Storage.t.get(i).toString();
                         if (temp_str.contains(cmd_2)) {
                             System.out.println(++temp_counter + "." + temp_str);
                         }
@@ -202,7 +179,7 @@ public class Duke {
                     System.out.println("Got it. I've added this task:");
                     System.out.print("  ");
                     if (cmd_1.equals("todo")) {
-                        t.add(Task.size, new Todo(cmd_2));
+                        Storage.t.add(Task.size, new Todo(cmd_2));
                     } else {
                         //event & deadline
                         //need string parsing again
@@ -224,7 +201,7 @@ public class Duke {
 
                         //parse it
                         String task_year_str = cmd_2_2_2_1_year; //i know it is redundant logically,
-                                                                 // but it looks nice (better readability)
+                        // but it looks nice (better readability)
                         int task_month_int = Integer.parseInt(cmd_2_2_2_1_month);
                         String task_month_str =  month_name[task_month_int-1];
                         String task_day_str;
@@ -255,28 +232,20 @@ public class Duke {
                         //parsing done
 
                         if (cmd_1.equals("event")) {
-                            t.add(Task.size, new Event(cmd_2_1, task_day_str, task_month_str, task_year_str, task_time_str));
+                            Storage.t.add(Task.size, new Event(cmd_2_1, task_day_str, task_month_str, task_year_str, task_time_str));
                         } else { //deadline
-                            t.add(Task.size, new Deadline(cmd_2_1, task_day_str, task_month_str, task_year_str, task_time_str));
+                            Storage.t.add(Task.size, new Deadline(cmd_2_1, task_day_str, task_month_str, task_year_str, task_time_str));
                         }
                     }
-                    System.out.println(t.get(Task.size-1).toString());
+                    System.out.println(Storage.t.get(Task.size-1).toString());
                     System.out.println("Now you have " + Task.size + " tasks in the list.");
                 }
             }
-
-            //file io
-            try {
-                FileOutputStream new_file = new FileOutputStream("C:\\Users\\LL\\2113t\\duke\\src\\main\\java\\duke.txt");
-                ObjectOutputStream out = new ObjectOutputStream(new_file);
-                for (int i = 0; i < Task.size; i++) {
-                    out.writeObject(t.get(i));
-                }
-                out.close();
-                new_file.close();
-            } catch (IOException e) {
-                System.out.println("OOPS... IOException is caught.");
-            }
+            storage.wrapUp();
         }
+    }
+
+    public static void main(String[] args) throws Exception {
+        new Duke("C:\\Users\\LL\\2113t\\duke\\src\\main\\java\\duke.txt").run();
     }
 }
