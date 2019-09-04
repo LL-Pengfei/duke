@@ -21,4 +21,25 @@ public class Ui {
         System.out.println("Hello! I'm Duke");
         System.out.println("What can I do for you?");
     }
+
+    public void bye() {
+        System.out.println("Bye. Hope to see you again soon!");
+    }
+
+    public void list() {
+        System.out.println("Here are the tasks in your list:");
+        for (int i = 0; i < Task.size; i++) {
+            System.out.println(i+1 + "." + TaskList.t.get(i).toString());
+        }
+    }
+
+    public void addTask_pre() {
+        System.out.println("Got it. I've added this task:");
+        System.out.print("  ");
+    }
+
+    public void addTask_post() {
+        System.out.println(TaskList.t.get(Task.size-1).toString());
+        System.out.println("Now you have " + Task.size + " tasks in the list.");
+    }
 }

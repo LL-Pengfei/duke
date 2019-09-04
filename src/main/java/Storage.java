@@ -15,7 +15,6 @@ import java.io.*;
 
 public class Storage {
     public static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-    public static ArrayList<Task> t = new ArrayList<>();
     public static String[] month_name = new String[15]; //redundancy
     public String cmd;
     public String filePath;
@@ -36,14 +35,14 @@ public class Storage {
         month_name[10] = "November";
         month_name[11] = "December";
     }
+    //load & reload: file io
     public void load() throws Exception {
-        //file io
         try {
             FileInputStream file = new FileInputStream(filePath);
             ObjectInputStream in = new ObjectInputStream(file);
             Task.size = 0;
             while(file.available() > 0) {
-                t.add(Task.size++, (Task)in.readObject());
+                TaskList.t.add(Task.size++, (Task)in.readObject());
             }
             in.close();
             file.close();
@@ -54,13 +53,12 @@ public class Storage {
         }
     }
 
-    public void reload() throws Exception {
-        //file io
+    public void unload() throws Exception {
         try {
             FileOutputStream new_file = new FileOutputStream(filePath);
             ObjectOutputStream out = new ObjectOutputStream(new_file);
             for (int i = 0; i < Task.size; i++) {
-                out.writeObject(Storage.t.get(i));
+                out.writeObject(TaskList.t.get(i));
             }
             out.close();
             new_file.close();
