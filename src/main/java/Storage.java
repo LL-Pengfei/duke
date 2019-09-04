@@ -14,14 +14,15 @@ import java.util.*;
 import java.io.*;
 
 public class Storage {
-    public static ArrayList<Task> t = new ArrayList<>(); //make it global
     public static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    public static ArrayList<Task> t = new ArrayList<>();
+    public static String[] month_name = new String[15]; //redundancy
     public String cmd;
     public String filePath;
 
-    public static String[] month_name = new String[15]; //redundancy
-
     public Storage(String filePath) throws Exception {
+        this.filePath = filePath;
+
         month_name[0] = "January";
         month_name[1] = "February";
         month_name[2] = "March";
@@ -34,8 +35,8 @@ public class Storage {
         month_name[9] = "October";
         month_name[10] = "November";
         month_name[11] = "December";
-
-        this.filePath = filePath;
+    }
+    public void load() throws Exception {
         //file io
         try {
             FileInputStream file = new FileInputStream(filePath);
@@ -53,7 +54,7 @@ public class Storage {
         }
     }
 
-    public void wrapUp() throws Exception {
+    public void reload() throws Exception {
         //file io
         try {
             FileOutputStream new_file = new FileOutputStream(filePath);

@@ -80,8 +80,8 @@ public class Duke {
 
     public Duke(String filePath) throws Exception {
         ui = new Ui();
-        ui.initialize();
         storage = new Storage(filePath);
+        storage.load();
     }
 
     public void run() throws Exception {
@@ -220,7 +220,7 @@ public class Duke {
                     System.out.println("Now you have " + Task.size + " tasks in the list.");
                 }
             }
-            storage.wrapUp();
+            storage.reload();
         }
     }
 

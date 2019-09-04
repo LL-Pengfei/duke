@@ -11,7 +11,7 @@
 //deal with user interactions
 
 public class Ui {
-    public void initialize() {
+    public Ui() {
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
                 + "| | | | | | | |/ / _ \\\n"
