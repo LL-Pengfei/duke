@@ -160,7 +160,6 @@ is not the number in the task list, but directly 1 2 3...)
 9.5.1 A-TextUiTesting implemented, using Text UI Testing, test using the IO redirection technique
 it now supports using the IO redirection technique to semi-automate testing of Duke
 [automated testing of the Duke UI]
-//need to update 9.5.1 after completing more oop section
 
 9.5.2 A-MoreOOP implemented
 Code refactored to extract out closely related code as classes
