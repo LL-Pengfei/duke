@@ -10,9 +10,10 @@
 
 //Event.java
 //support Event of Task, subclass of Task
-
 //tutorial01 note: better to use getters and setters to allow modification of at_day month year time inside class event
 //a good practice to do that for oop & se
+
+//package TaskPackage;
 
 public class Event extends Task {
     protected String at_day;

@@ -9,6 +9,7 @@
  */
 //DukeException.java
 //support & enable error handling for Duke
+//package DukeExceptionPackage;
 
 public class DukeException extends Exception {
     public DukeException(String s) {

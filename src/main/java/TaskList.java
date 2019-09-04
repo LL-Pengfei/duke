@@ -10,8 +10,9 @@
 //TaskList.java
 //contain the tasklist, has operations to add/delete tasks in the list
 
+//package TaskPackage;
+
 import java.util.*;
-import java.io.*;
 
 public class TaskList {
     public static ArrayList<Task> t = new ArrayList<>();
@@ -19,6 +20,18 @@ public class TaskList {
     public TaskList() {
     }
 
+    public void todo(String cmd_2) {
+        TaskList.t.add(Task.size, new Todo(cmd_2));
+    }
+
+    public void done(String cmd_2) {
+        //done things
+        System.out.println("Nice! I've marked this task as done:");
+        System.out.print("  ");
+        int num = Integer.parseInt(cmd_2); // the second token is num
+        TaskList.t.get(num-1).markAsDone();
+        System.out.println(TaskList.t.get(num-1).toString());
+    }
     public void delete(String cmd_2) {
         //delete things
         System.out.println("Noted. I've removed this task:");
@@ -41,18 +54,5 @@ public class TaskList {
                 System.out.println(++temp_counter + "." + temp_str);
             }
         }
-    }
-
-    public void todo(String cmd_2) {
-        TaskList.t.add(Task.size, new Todo(cmd_2));
-    }
-
-    public void done(String cmd_2) {
-        //done things
-        System.out.println("Nice! I've marked this task as done:");
-        System.out.print("  ");
-        int num = Integer.parseInt(cmd_2); // the second token is num
-        TaskList.t.get(num-1).markAsDone();
-        System.out.println(TaskList.t.get(num-1).toString());
     }
 }

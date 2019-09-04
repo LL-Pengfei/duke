@@ -8,8 +8,12 @@
  * Plagiarism is strictly prohibited under NUS rules and regulations.
  */
 
-import java.util.*;
-import java.io.*;
+//import TaskPackage.*;
+/*import StoragePackage.*;
+import ParserPackage.*;
+import UiPackage.*;
+import DukeExceptionPackage.*;
+ */
 
 public class Duke {
     private Ui ui;
@@ -156,7 +160,6 @@ is not the number in the task list, but directly 1 2 3...)
 9.5.1 A-TextUiTesting implemented, using Text UI Testing, test using the IO redirection technique
 it now supports using the IO redirection technique to semi-automate testing of Duke
 [automated testing of the Duke UI]
-//package related classes together
 //need to update 9.5.1 after completing more oop section
 
 9.5.2 A-MoreOOP implemented
