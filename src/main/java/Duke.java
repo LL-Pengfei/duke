@@ -78,13 +78,6 @@ public class Duke {
     private Ui ui;
     private Storage storage;
 
-    public static void list() {
-        System.out.println("Here are the tasks in your list:");
-        for (int i = 0; i < Task.size; i++) {
-            System.out.println(i+1 + "." + Storage.t.get(i).toString());
-        }
-    }
-
     public Duke(String filePath) throws Exception {
         ui = new Ui();
         ui.initialize();
@@ -92,27 +85,13 @@ public class Duke {
     }
 
     public void run() throws Exception {
-        String[] month_name = new String[15]; //redundancy
-        month_name[0] = "January";
-        month_name[1] = "February";
-        month_name[2] = "March";
-        month_name[3] = "April";
-        month_name[4] = "May";
-        month_name[5] = "June";
-        month_name[6] = "July";
-        month_name[7] = "August";
-        month_name[8] = "September";
-        month_name[9] = "October";
-        month_name[10] = "November";
-        month_name[11] = "December";
-
         while(true) {
             String cmd = Storage.br.readLine();
             if (cmd.equals("bye")) {
                 System.out.println("Bye. Hope to see you again soon!");
                 break;
             } else if (cmd.equals("list")) {
-                list();
+                List.list();
             } else {
                 //doing things, or done things
                 String[] token = cmd.split(" ", 2);
@@ -203,7 +182,7 @@ public class Duke {
                         String task_year_str = cmd_2_2_2_1_year; //i know it is redundant logically,
                         // but it looks nice (better readability)
                         int task_month_int = Integer.parseInt(cmd_2_2_2_1_month);
-                        String task_month_str =  month_name[task_month_int-1];
+                        String task_month_str =  Storage.month_name[task_month_int-1];
                         String task_day_str;
                         if (cmd_2_2_2_1_day.equals("1") || cmd_2_2_2_1_day.equals("21") || cmd_2_2_2_1_day.equals("31")) {
                             task_day_str = cmd_2_2_2_1_day + "st";

@@ -19,7 +19,22 @@ public class Storage {
     public String cmd;
     public String filePath;
 
+    public static String[] month_name = new String[15]; //redundancy
+
     public Storage(String filePath) throws Exception {
+        month_name[0] = "January";
+        month_name[1] = "February";
+        month_name[2] = "March";
+        month_name[3] = "April";
+        month_name[4] = "May";
+        month_name[5] = "June";
+        month_name[6] = "July";
+        month_name[7] = "August";
+        month_name[8] = "September";
+        month_name[9] = "October";
+        month_name[10] = "November";
+        month_name[11] = "December";
+
         this.filePath = filePath;
         //file io
         try {
