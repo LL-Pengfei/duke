@@ -10,7 +10,7 @@
 
 //Task.java
 //baseclass of Deadline Event & Todo, branching out to form different subclasses
-//of Task; implemented Serializable to support persistant storage (save tasks in
+//of Task; implemented Serializable to support persistent storage (save tasks in
 // hard disk, load data from hard disk when Duke starts up)
 
 //package TaskPackage;

@@ -1,4 +1,11 @@
 list
 todo sth
 list
+event sthsthsth /at 6/9/2019 1800
+list
+find sth
+list
+delete 2
+deadline sthsthsthsth /by 12/12/2020 2000
+list
 bye
