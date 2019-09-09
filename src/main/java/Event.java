@@ -40,6 +40,11 @@ public class Event extends Task {
         this.at_time = at_time;
     }
 
+    /**
+     * Cast all the information pertaining to a Event instance to one singular string
+     *
+     * @return The string containing all the information associated with an Event instance.
+     */
     @Override
     public String toString() {
         return "[E]" + super.toString() + "(at: " + at_day + " of " + at_month + " " + at_year + ", " +  at_time + ")";

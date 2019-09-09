@@ -95,7 +95,7 @@ public class Duke {
      * The constructor of the Duke Class, creating instances of classes Ui() Storage() TaskList() Parser()
      * loading data from the persistant storage in hard disk (the tasks stored)
      *
-     * @param filePath The filepath of the persistant storage in the hard disk storing the data of the tasks
+     * @param filePath The filepath of the persistant storage in the hard disk storing the data of the tasklist
      * @throws Exception If Exception is caught in instantiation of the classes/loading from persistant storage
      */
     public Duke(String filePath) throws Exception {

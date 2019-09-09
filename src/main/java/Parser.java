@@ -10,7 +10,18 @@
 //Parser.java
 //deal with making sense of the user command
 
+/**
+ * The Class Parser, dealing with making sense of the user command
+ */
 public class Parser {
+
+    /**
+     * parsing the input command for event and deadline
+     *
+     * @param cmd_1 The type of the task for the command, i.e. either event or deadline
+     * @param cmd_2 The rest of the input command for the task, containing the task name (description)
+     *              and the task time, unparsed.
+     */
     public void event_deadline_parser(String cmd_1, String cmd_2) {
         //event & deadline
         //need string parsing again
