@@ -11,8 +11,6 @@
 //Todo.java
 //support Todo of Task, subclass of Task
 
-//package TaskPackage;
-
 public class Todo extends Task {
     public Todo(String description) {
         super(description);

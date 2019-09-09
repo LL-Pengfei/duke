@@ -14,8 +14,14 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+/**
+ * The class DukeTest, providing test codes for Duke
+ */
 public class DukeTest {
     @Test
+    /**
+     * dummyTest for trivial testing of whether JUnit was set up correctly
+     */
     public void dummyTest(){
         assertEquals(2,2);
     }

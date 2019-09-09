@@ -10,8 +10,6 @@
 //TaskList.java
 //contain the tasklist, has operations to add/delete tasks in the list
 
-//package TaskPackage;
-
 import java.util.*;
 
 public class TaskList {

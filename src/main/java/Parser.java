@@ -10,11 +10,6 @@
 //Parser.java
 //deal with making sense of the user command
 
-//package ParserPackage;
-
-//import TaskPackage.*;
-//import StoragePackage.*;
-
 public class Parser {
     public void event_deadline_parser(String cmd_1, String cmd_2) {
         //event & deadline

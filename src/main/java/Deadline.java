@@ -9,7 +9,6 @@
  */
 //Deadline.java
 //support Deadline of Task, subclass of Task
-//package TaskPackage;
 
 public class Deadline extends Task {
     protected String by_day;

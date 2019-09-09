@@ -8,13 +8,79 @@
  * Plagiarism is strictly prohibited under NUS rules and regulations.
  */
 
-//import TaskPackage.*;
-/*import StoragePackage.*;
-import ParserPackage.*;
-import UiPackage.*;
-import DukeExceptionPackage.*;
- */
 
+/**
+ * Main Class of the Project Duke, simulating a personal assistant supporting/enabling
+ * various sorts of functionalities listed below:
+ *
+ * 1. initialize/greet/bye (Level-1) - initialize when programme starts
+ * command: / - auto greet when programme starts
+ * command: bye - will exit the programme
+ *
+ * 2. list (Level-2)
+ * command: list - will return the list of the tasks stored
+ *
+ * 3. markAsDone (Level-3) - used Task class to implement
+ *                         - allow marking as X or V
+ * command: done int - will return "I've marked this task as done: ...
+ *
+ * 4. todo event deadline - support tracking different types of tasks (Level-4)
+ *                        - implemented using inheritance to support
+ *                        - multiple task types
+ * command: todo sth - return added status + total task size (current)
+ * command: deadline sth /by time - return added status + total task size (current)
+ * command: event sth /at time - return added status + total task size (current)
+ * ** command has to be specific and sticks to the format specified in pt 8 **
+ *
+ * 5. Handle Errors (Level-5) - used Exceptions to handle errors
+ * - define a class DukeException to represent exceptions specific to Duke
+ * - currently support:
+ * 5.1 commands: done delete find todo event deadline //not followed by task number/task
+ *     - currently can only handle empty commands, i.e. commands not followed by things that should follow
+ *     - wrong ones still not dealt with (e.g. for deadline & event, if time format is wrong, not yet catchable)
+ * 5.2 non-sensical command/input e.g. blah -> only limited to one word command, no space
+ * 5.3 File IO Exception (persistent memory storage(pt 7)) - will catch if initial document is empty
+ *
+ * 6. Delete (Level-6)
+ * command: delete int - return deleted status + total task size (current)
+ *
+ * 7. Save (Level-7)
+ * - save the tasks in the hard disk automatically whenever the task list changes
+ * - i.e. save after every command (implemented using while(true) loop and save at
+ * - the end of completion of each command)
+ * - also, load the data from the hard disk when Duke starts up
+ * - file name & location hard-coded
+ * - implemented using Serializable
+ * ALSO, when doing Level-6, used Java Collections classes for storing data
+ * - implemented using ArrayList<Task> to store the tasks
+ *
+ * 8. Dates and Time (Level-8)
+ * - Deadline and Event time understood as time, not String
+ * - support dates and time interpretations (at this moment, time only support round
+ * - clock time, non-round clock time will round down to the round clock
+ * - (e.g. 18:50 -> 18:00))
+ * command: deadline(event) sth /by(at) D/M/YR TTTT (format)
+ * sth /by D ||||| sth /at D -> space must have; must be this exact format
+ * D/M/YR TTTT TTTT == 24 hour clock, no :
+ * this will hence be interpreted into dates and time e.g. 2nd of December 2019, 6pm
+ *
+ * 9. Find (Level-9)
+ * provide the capability to search for tasks that were recorded. Give users a
+ * way to find a task by searching for a keyword
+ * command: find sth (sth = any keyword) - return matching tasks list (number here
+ * is not the number in the task list, but directly 1 2 3...)
+ *
+ * 9.5.1 A-TextUiTesting implemented, using Text UI Testing, test using the IO redirection technique
+ * it now supports using the IO redirection technique to semi-automate testing of Duke
+ * [automated testing of the Duke UI]
+ *
+ * 9.5.2 A-MoreOOP implemented
+ * Code refactored to extract out closely related code as classes
+ * extracted out Ui Storage Parser Tasklist
+ *
+ * 9.5.3 A-JUnit implemented
+ * added Junit support to the project
+ */
 public class Duke {
     private Ui ui;
     private Storage storage;
@@ -25,6 +91,13 @@ public class Duke {
     //Tasklist is the class extracting out codes dealing with the list when attempting to make the code more oop
     //will probably refactorise in the future
 
+    /**
+     * The constructor of the Duke Class, creating instances of classes Ui() Storage() TaskList() Parser()
+     * loading data from the persistant storage in hard disk (the tasks stored)
+     *
+     * @param filePath The filepath of the persistant storage in the hard disk storing the data of the tasks
+     * @throws Exception If Exception is caught in instantiation of the classes/loading from persistant storage
+     */
     public Duke(String filePath) throws Exception {
         ui = new Ui();
         storage = new Storage(filePath);
@@ -33,6 +106,15 @@ public class Duke {
         storage.load();
     }
 
+    /**
+     * Execute the programme when called from the Main Function, read in command line by line by line, call respective
+     * functionalities to parse the input and determine the command, thereby execute accordingly.
+     * After each iteration of the loop, one command is processed and executed, will reload the data back to the persistant
+     * storage after each run of the loop.
+     * The loop will terminate when input command == bye
+     *
+     * @throws Exception If Exception is caught in executing the programme
+     */
     public void run() throws Exception {
         while(true) {
             String cmd = Storage.br.readLine();
@@ -92,76 +174,12 @@ public class Duke {
         }
     }
 
+    /**
+     * The Main Function of the Duke Class, will call constructor to intialize and Duke().run() to execute the programmes
+     * @param args Arbitrary arguments
+     * @throws Exception If Exception is caught in executing the programmes
+     */
     public static void main(String[] args) throws Exception {
         new Duke("C:\\Users\\LL\\2113t\\duke\\src\\main\\java\\duke.txt").run();
     }
 }
-
-
-/* main function, support/enable the following functionalities:
-
-1. initialize/greet/bye (Level-1) - initialize when programme starts
-command: / - auto greet when programme starts
-command: bye - will exit the programme
-
-2. list (Level-2)
-command: list - will return the list of the tasks stored
-
-3. markAsDone (Level-3) - used Task class to implement
-                        - allow marking as X or V
-command: done int - will return "I've marked this task as done: ...
-
-4. todo event deadline - support tracking different types of tasks (Level-4)
-                       - implemented using inheritance to support
-                       - multiple task types
-command: todo sth - return added status + total task size (current)
-command: deadline sth /by time - return added status + total task size (current)
-command: event sth /at time - return added status + total task size (current)
-** command has to be specific and sticks to the format specified in pt 8 **
-
-5. Handle Errors (Level-5) - used Exceptions to handle errors
-- define a class DukeException to represent exceptions specific to Duke
-- currently support:
-5.1 commands: done delete find todo event deadline //not followed by task number/task
-    - currently can only handle empty commands, i.e. commands not followed by things that should follow
-    - wrong ones still not dealt with (e.g. for deadline & event, if time format is wrong, not yet catchable)
-5.2 non-sensical command/input e.g. blah -> only limited to one word command, no space
-5.3 File IO Exception (persistent memory storage(pt 7)) - will catch if initial document is empty
-
-6. Delete (Level-6)
-command: delete int - return deleted status + total task size (current)
-
-7. Save (Level-7)
-- save the tasks in the hard disk automatically whenever the task list changes
-- i.e. save after every command (implemented using while(true) loop and save at
-- the end of completion of each command)
-- also, load the data from the hard disk when Duke starts up
-- file name & location hard-coded
-- implemented using Serializable
-ALSO, when doing Level-6, used Java Collections classes for storing data
-- implemented using ArrayList<Task> to store the tasks
-
-8. Dates and Time (Level-8)
-- Deadline and Event time understood as time, not String
-- support dates and time interpretations (at this moment, time only support round
-- clock time, non-round clock time will round down to the round clock
-- (e.g. 18:50 -> 18:00))
-command: deadline(event) sth /by(at) D/M/YR TTTT (format)
-sth /by D ||||| sth /at D -> space must have; must be this exact format
-D/M/YR TTTT TTTT == 24 hour clock, no :
-this will hence be interpreted into dates and time e.g. 2nd of December 2019, 6pm
-
-9. Find (Level-9)
-provide the capability to search for tasks that were recorded. Give users a
-way to find a task by searching for a keyword
-command: find sth (sth = any keyword) - return matching tasks list (number here
-is not the number in the task list, but directly 1 2 3...)
-
-9.5.1 A-TextUiTesting implemented, using Text UI Testing, test using the IO redirection technique
-it now supports using the IO redirection technique to semi-automate testing of Duke
-[automated testing of the Duke UI]
-
-9.5.2 A-MoreOOP implemented
-Code refactored to extract out closely related code as classes
-extracted out Ui Storage Parser Tasklist
- */

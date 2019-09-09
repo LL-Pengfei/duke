@@ -13,8 +13,6 @@
 //of Task; implemented Serializable to support persistent storage (save tasks in
 // hard disk, load data from hard disk when Duke starts up)
 
-//package TaskPackage;
-
 import java.io.Serializable;
 
 public class Task implements Serializable {
