@@ -20,7 +20,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class DukeTest {
     @Test
     /**
-     * dummyTest for testing of whether JUnit was set up correctly
+     * dummyTest for trivial testing of whether JUnit was set up correctly
      */
     public void dummyTest(){
         assertEquals(2,2);
