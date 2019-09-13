@@ -8,6 +8,8 @@
  * Plagiarism is strictly prohibited under NUS rules and regulations.
  */
 
+// week 5 tutorial note: JavaDoc needs to be complete sentence, with full stop. Also need to try to be concise.
+// junit automate testing - need more, much more
 
 /**
  * Main Class of the Project Duke, simulating a personal assistant supporting/enabling
